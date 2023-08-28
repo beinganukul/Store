@@ -19,7 +19,7 @@ func SaveBookImageToDisk(c *gin.Context) ([]string, error) {
 	}
 	files := form.File["Image"]
 
-	absolutePath, _ := filepath.Abs(os.Getenv("BOOK_IMAGE_PATH"))
+	absolutePath, _ := filepath.Abs((os.Getenv("MEDIA_PATH") + "book"))
 
 	for _, file := range files {
 

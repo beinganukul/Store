@@ -10,4 +10,5 @@ type User struct {
 	FName    string
 	LName    string
 	Books    []Book
+	Image    string
 }

@@ -18,6 +18,9 @@ func Signup(c *gin.Context) {
 	var body struct {
 		Email    string
 		Password string
+		FName    string
+		LName    string
+		Mobile   int32
 	}
 
 	if c.Bind(&body) != nil {
@@ -36,7 +39,13 @@ func Signup(c *gin.Context) {
 		return
 	}
 
-	user := models.User{Email: body.Email, Password: string(hash)}
+	user := models.User{
+		Email:    body.Email,
+		Password: string(hash),
+		FName:    body.FName,
+		LName:    body.LName,
+		Mobile:   body.Mobile,
+	}
 	result := initializers.DB.Create(&user)
 
 	if result.Error != nil {
@@ -46,7 +55,7 @@ func Signup(c *gin.Context) {
 		return
 	}
 
-	c.Status(200)
+	c.Status(201)
 }
 
 func Login(c *gin.Context) {
